@@ -164,42 +164,45 @@ void buscarCliente()
 }
 
 // Função para atualizar as informações de um cliente
-void atualizarCliente()
-{
+void atualizarCliente() {
     char nomeBusca[TAM_NOME];
     printf("Digite o nome do cliente que deseja atualizar: ");
     fgets(nomeBusca, TAM_NOME, stdin);
-    removerNovaLinha(nomeBusca); // Remover '\n'
+    removerNovaLinha(nomeBusca);  // Remover '\n'
 
-    for (int i = 0; i < totalClientes; i++)
-    {
-        if (strstr(clientes[i].nome, nomeBusca) != NULL)
-        {
-            printf("Atualizando informacoes do cliente %s\n\n", clientes[i].nome);
+    for (int i = 0; i < totalClientes; i++) {
+        if (strstr(clientes[i].nome, nomeBusca) != NULL) {
+            printf("Atualizando informacoes do cliente %s\n", clientes[i].nome);
             printf("Novo Endereco: ");
             fgets(clientes[i].endereco, TAM_ENDERECO, stdin);
-            removerNovaLinha(clientes[i].endereco); // Remover '\n'
+            removerNovaLinha(clientes[i].endereco);  // Remover '\n'
 
             printf("Novo Telefone: ");
             fgets(clientes[i].telefone, TAM_TELEFONE, stdin);
-            removerNovaLinha(clientes[i].telefone); // Remover '\n'
+            removerNovaLinha(clientes[i].telefone);  // Remover '\n'
 
-            do
-            {
+            do {
                 printf("Novo Email: ");
                 fgets(clientes[i].email, TAM_EMAIL, stdin);
-                removerNovaLinha(clientes[i].email); // Remover '\n'
-                if (!validarEmail(clientes[i].email))
-                {
+                removerNovaLinha(clientes[i].email);  // Remover '\n'
+                if (!validarEmail(clientes[i].email)) {
                     printf("Email invalido. Tente novamente.\n");
                 }
             } while (!validarEmail(clientes[i].email));
+
+            printf("Novo valor de manutencao: ");
+            fgets(clientes[i].valor, TAM_VALOR, stdin);
+            removerNovaLinha(clientes[i].valor);  // Remover '\n'
+
             salvarDados();
-            printf("Informacoes atualizadas com sucesso!\n\n");
+            printf("Informações atualizadas com sucesso!\n");
             return;
         }
     }
-    printf("Cliente nao encontrado.\n\n");
+    printf("\n");
+    printf("Cliente nao encontrado. \n");
+    printf("Se desejar pressione 1 para adicionar um novo cliente.\n"); 
+    printf("Se preferir, pressione 2 para listar os clientes ja cadastrados.\n"); 
 }
 
 // Função para excluir um cliente
@@ -260,7 +263,7 @@ int main()
         printf("==== SEJA BEM-VINDO AO SISTEMA ELEVA ====\n");
         printf("////////////////////////////////////////// \n\n");
         printf("Selecione uma das opcoes abaixo, basta digitar o numero correspondente: \n");
-        
+
         printf("1. Adicionar Cliente\n");
         printf("2. Listar Clientes\n");
         printf("3. Buscar Cliente\n");
